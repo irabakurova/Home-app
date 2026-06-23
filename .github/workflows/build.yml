@@ -1,0 +1,98 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  FLUTTER_VERSION: '3.24.0'
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - run: flutter pub get
+        working-directory: family_meal_planner
+
+      - run: dart run build_runner build --delete-conflicting-outputs
+        working-directory: family_meal_planner
+
+      - run: flutter build apk --release
+        working-directory: family_meal_planner
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: family_meal_planner/build/app/outputs/flutter-apk/app-release.apk
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - run: flutter pub get
+        working-directory: family_meal_planner
+
+      - run: dart run build_runner build --delete-conflicting-outputs
+        working-directory: family_meal_planner
+
+      - run: flutter build windows --release
+        working-directory: family_meal_planner
+
+      - name: Build installer
+        run: |
+          $innopath = Get-ChildItem "C:\Program Files*\Inno Setup*\ISCC.exe" | Select-Object -First 1
+          if ($innopath) {
+            & $innopath.FullName "family_meal_planner\УСТАНОВЩИК.iss"
+          } else {
+            Write-Host "Inno Setup not found, skipping installer"
+          }
+        shell: pwsh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-exe
+          path: family_meal_planner/dist/*.exe
+          if-no-files-found: warn
+
+  release:
+    needs: [build-android, build-windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: Collect artifacts
+        run: |
+          mkdir -p release-files
+          find artifacts/ -name "*.apk" -exec cp {} release-files/ \;
+          find artifacts/ -name "*.exe" -exec cp {} release-files/ \;
+          ls -la release-files/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "Easily Kitchen ${{ github.ref_name }}"
+          generate_release_notes: true
+          files: release-files/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
