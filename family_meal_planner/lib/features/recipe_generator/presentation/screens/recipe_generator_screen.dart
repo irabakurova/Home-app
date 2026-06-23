@@ -142,9 +142,7 @@ class _SuggestionCard extends StatelessWidget {
       margin: EdgeInsets.zero,
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        // goNamed (not pushNamed) because RecipeGeneratorScreen is outside
-        // the ShellRoute — pushNamed to a shell sub-route causes a blank screen.
-        onTap: () => context.goNamed(
+        onTap: () => context.pushNamed(
           RouteNames.recipeDetail,
           pathParameters: {'id': suggestion.recipe.id},
         ),
