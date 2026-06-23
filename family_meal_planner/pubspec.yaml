@@ -1,0 +1,83 @@
+name: easily_kitchen
+description: Easily Kitchen — семейное приложение для планирования питания и управления рецептами.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.19.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State management & DI
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Navigation
+  go_router: ^14.6.3
+
+  # Database (Drift + SQLite) — активируется на Этапе 2
+  drift: ^2.21.0
+  sqlite3_flutter_libs: ^0.5.28
+  path_provider: ^2.1.5
+  path: ^1.9.0
+
+  # Firebase
+  firebase_core: ^3.8.0
+  firebase_auth: ^5.3.4
+  cloud_firestore: ^5.5.0
+  # firebase_storage: ^12.3.7
+
+  # Utilities
+  uuid: ^4.5.1
+  intl: ^0.20.2
+  connectivity_plus: ^6.1.1
+
+  # In-app updates
+  package_info_plus: ^8.1.0   # Read current app version
+  http: ^1.2.2                 # Download with progress (Windows installer)
+  url_launcher: ^6.3.1         # Open APK download URL in browser (Android)
+
+  # Image / file picking
+  image_picker: ^1.1.2
+  file_picker: ^8.1.6
+
+  # Icons
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Mocking
+  mockito: ^5.4.4
+  build_runner: ^2.4.13
+
+  # Code generation
+  drift_dev: ^2.21.0
+  riverpod_generator: ^2.6.3
+
+  # Linting
+  flutter_lints: ^4.0.0
+
+  # App icon generation
+  flutter_launcher_icons: ^0.14.3
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/app_icon.png"
+  windows:
+    generate: true
+    image_path: "assets/icon/app_icon.png"
+    icon_size: 256
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icon/

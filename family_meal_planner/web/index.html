@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- viewport-fit=cover is required for black-translucent status bar:
+       the Flutter canvas extends behind the status bar and
+       MediaQuery.padding.top carries the inset so AppBar compensates. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- black-translucent: status bar is transparent, AppBar color shows through
+       — no visible stripe at the top in either light or dark mode. -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Easily Kitchen">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Theme color: dark in dark mode, brand green in light mode -->
+  <meta name="theme-color" content="#141C19" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#4A8972" media="(prefers-color-scheme: light)">
+
+  <style>
+    /*
+     * Flutter web PWA best-practices for iOS Safari:
+     *
+     * overflow: hidden  — prevents the HTML page from scrolling outside the
+     *   Flutter canvas; without this, swipe gestures near edges can scroll the
+     *   body and make the nav bar momentarily unreachable.
+     *
+     * overscroll-behavior: none  — stops Safari from interpreting horizontal
+     *   swipes as browser-back/forward navigation, which was causing the screen
+     *   to jump back several times mid-interaction.
+     *
+     * position: fixed  — pins the body to the viewport so iOS "rubber-band"
+     *   bounce can't push the canvas out of position and swallow touch events.
+     *
+     * Flutter handles all scrolling internally; these CSS rules only affect
+     * the outer HTML shell, not Flutter's own gesture pipeline.
+     */
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      position: fixed;
+      width: 100%;
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+  </style>
+  <script>
+    // Set body background BEFORE Flutter renders so the transparent status bar
+    // never shows a mismatched colour.
+    // Priority: saved app choice (localStorage) > OS dark-mode preference.
+    (function () {
+      var dark = '#141C19';
+      var light = '#FFFDF7';
+      var saved;
+      try { saved = localStorage.getItem('ek_theme'); } catch (e) {}
+      var useDark = saved === 'dark' ||
+        (saved !== 'light' &&
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var bg = useDark ? dark : light;
+      document.documentElement.style.backgroundColor = bg;
+      document.body && (document.body.style.backgroundColor = bg);
+    })();
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Easily Kitchen</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <!--
+    You can customize the "flutter_bootstrap.js" script.
+    This is useful to provide a custom configuration to the Flutter loader
+    or to give the user feedback during the initialization process.
+
+    For more details:
+    * https://docs.flutter.dev/platform-integration/web/initialization
+  -->
+  <!-- sql.js required by drift WebDatabase (IndexedDB-backed SQLite on web) -->
+  <script>
+    // Tell sql.js where to find the WASM binary (served from same origin)
+    var Module = { locateFile: function(f) { return f; } };
+  </script>
+  <script src="sql-wasm.js"></script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<svg width="1024" height="1024" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Семейное меню</title>
+<rect width="680" height="680" rx="152" fill="#FFFFFF"/>
+<circle cx="572" cy="108" r="96" fill="#F8F8F8"/>
+<circle cx="108" cy="572" r="68" fill="#F8F8F8"/>
+<rect x="170" y="75" width="360" height="558" rx="54" fill="#E2E2E2"/>
+<rect x="158" y="62" width="360" height="558" rx="54" fill="#D43030" stroke="#BC2020" stroke-width="2"/>
+<rect x="163" y="67" width="22" height="543" rx="11" fill="#E84848" opacity="0.5"/>
+<rect x="162" y="62" width="360" height="100" rx="54" fill="#C82828"/>
+<rect x="162" y="130" width="360" height="32" fill="#C82828"/>
+<rect x="274" y="80" width="7" height="40" rx="3.5" fill="#A81818"/>
+<rect x="294" y="80" width="7" height="40" rx="3.5" fill="#A81818"/>
+<rect x="314" y="80" width="7" height="40" rx="3.5" fill="#A81818"/>
+<rect x="334" y="80" width="7" height="40" rx="3.5" fill="#A81818"/>
+<rect x="354" y="80" width="7" height="40" rx="3.5" fill="#A81818"/>
+<rect x="374" y="80" width="7" height="40" rx="3.5" fill="#A81818"/>
+<rect x="394" y="80" width="7" height="40" rx="3.5" fill="#A81818"/>
+<rect x="414" y="80" width="7" height="40" rx="3.5" fill="#A81818"/>
+<rect x="172" y="162" width="328" height="106" rx="20" fill="none" stroke="#BC2020" stroke-width="3"/>
+<rect x="176" y="166" width="320" height="98" rx="17" fill="#DE3838"/>
+<rect x="473" y="197" width="26" height="50" rx="13" fill="#F0F0F0" stroke="#DEDEDE" stroke-width="1.5"/>
+<rect x="478" y="203" width="9" height="38" rx="4.5" fill="#FFFFFF" opacity="0.85"/>
+<rect x="492" y="205" width="5" height="34" rx="2.5" fill="#D0D0D0"/>
+<rect x="164" y="268" width="352" height="10" rx="5" fill="#BC2020"/>
+<rect x="172" y="280" width="328" height="312" rx="20" fill="none" stroke="#BC2020" stroke-width="3"/>
+<rect x="176" y="284" width="320" height="304" rx="17" fill="#DE3838"/>
+<rect x="474" y="364" width="30" height="156" rx="15" fill="#F0F0F0" stroke="#DEDEDE" stroke-width="1.5"/>
+<rect x="480" y="372" width="10" height="140" rx="5" fill="#FFFFFF" opacity="0.85"/>
+<rect x="496" y="374" width="5" height="136" rx="2.5" fill="#D0D0D0"/>
+<rect x="202" y="602" width="70" height="18" rx="9" fill="#CCCCCC"/>
+<rect x="444" y="602" width="70" height="18" rx="9" fill="#CCCCCC"/>
+<rect x="158" y="62" width="360" height="558" rx="54" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.45"/>
+</svg>

@@ -1,0 +1,26 @@
+rules_version = '2';
+
+// ── Easily Kitchen — Firestore Security Rules ──────────────────────────────
+//
+// Общая семья без авторизации. Приложение использует единый путь
+// /families/default_family/... для всех участников семьи.
+//
+// Доступ открыт для всех — база данных защищена тем, что только
+// участники семьи знают URL приложения и используют один телефон/ПК.
+//
+// DEPLOY: firebase deploy --only firestore:rules --project family-meal-planner-67475
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Семейные данные — открыты всем без авторизации
+    match /families/default_family/{document=**} {
+      allow read, write: if true;
+    }
+
+    // Всё остальное — закрыто
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
